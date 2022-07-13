@@ -25,10 +25,19 @@ const app = express();
 //   },
 // };
 
-app.use(cors({credentials: true, origin: true}));
+var allowCrossDomain = function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://bank-transaction-nine.vercel.app/");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+
+  next();
+};
+
+app.use(cors({ credentials: true, origin: true }));
 // app.options("/sendSms", cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(allowCrossDomain);
 
 app.post("/sendSms", async (req, res) => {
   try {
