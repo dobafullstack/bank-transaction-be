@@ -39,6 +39,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(allowCrossDomain);
 
+app.get("/", (req, res) => {
+    res.json("Hello World")
+})
+
 app.post("/sendSms", async (req, res) => {
   try {
     const response = await client.messages.create({
