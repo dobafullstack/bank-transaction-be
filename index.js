@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -58,4 +60,4 @@ app.post("/sendSms", async (req, res) => {
   }
 });
 
-app.listen(4000, () => console.log("Server is running on PORT 4000"));
+app.listen(process.env.PORT, () => console.log("Server is running on PORT 4000"));
