@@ -25,12 +25,12 @@ const app = express();
 //   },
 // };
 
-// app.use(cors(corsOptions));
-app.options("/sendSms", cors());
+app.use(cors({credentials: true, origin: true}));
+// app.options("/sendSms", cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post("/sendSms", cors(), async (req, res) => {
+app.post("/sendSms", async (req, res) => {
   try {
     const response = await client.messages.create({
       body: req.body.body,
